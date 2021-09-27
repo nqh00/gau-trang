@@ -1,55 +1,34 @@
-const = '<div class="loading"><span></span><span></span><span></span><span></span></div>';
-
-const = '6LeEFHwcAAAAAJ4i-kvaHhGiIMu7C9OKXke6aVQr';
-
-const = '___';
-
-const = 't';
-
-const = '<p class="paragraph">Permission denied.</p>';
-
-const = '<p class="paragraph">Unable to verify the token, please try again later.</p>';
-
-const = '<p class="paragraph">No results found.</p>';
-
-const = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D';
-
-const = 'img/posters/';
-
-const = '.jpg';
-
-const = '<div class="movie" id="';
-
-const = '"><img class="poster" width="200px" height="300px" src="';
-
-const = '" loading="lazy"/><p class="title">';
-
-const = '</p><div class="episode"><ol class="list">';
-
-const = '<li class="list-item"><a href="javascript:;" class="bonsoir" id="';
-
-const = '">Link #';
-
-const = '">';
-
-const = '</a></li>';
-
-const = '</ol></div></div>';
-
-const = 'poster';
-
-const = 'title';
-
-const = 'episode';
-
-const = 'show';
-
-const = 'Bonsoir';
-
-const = 'beforeend';
-
-const = '<style>html{background:#000}.plr{position:fixed;top:0;right:0;bottom:0;left:0}</style>';
-
-const = '<div class="plr"><video controls width="100%" height="100%"><source src="https://storage.googleapis.com/';
-
-const = '.mp4" type="video/mp4">';
+const g0 = 'kw';
+const g1 = 'keyup';
+const g2 = 'message';
+const g3 = '<div class="loading"><span></span><span></span><span></span><span></span>';
+const g4 = '6LdPAZIcAAAAAIVHWQMHiKv6mSw7yJYHBc6ytl-g';
+const g5 = '___';
+const g6 = 't';
+const g7 = '<p class="paragraph">Permission denied.';
+const g8 = '<p class="paragraph">Unable to verify the token.';
+const g9 = '<p class="paragraph">No results found.';
+const ga = 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D';
+const gb = 'img/posters/';
+const gc = '.jpg';
+const gd = '<div class="movie" id="';
+const ge = '"><img class="poster" width="200px" height="300px" src="';
+const gf = '" loading="lazy"><p class="title">';
+const gg = '</p><div class="episode"><ol class="list">';
+const gh = '<li class="list-item"><a href="javascript:;" class="bonsoir" id="';
+const gi = '">';
+const gj = 'Link #';
+const gk = '</a></li>';
+const gl = '</ol></div></div>';
+const gm = 'mc';
+const gn = 'poster';
+const go = 'title';
+const gp = 'click';
+const gq = 'episode';
+const gr = 'show';
+const gs = '_blank';
+const gt = 'Bonsoir';
+const gu = 'beforeend';
+const gv = '<style>html{background:#000}.plr{position:fixed;top:0;right:0;bottom:0;left:0}';
+const gw = '<div class="plr"><video controls width="100%" height="100%"><source src="https://storage.googleapis.com/';
+const gx = '.mp4" type="video/mp4">';
