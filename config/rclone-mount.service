@@ -1,0 +1,44 @@
+[Unit]
+Description=Rclone Mount Service
+AssertPathIsDirectory=/gautrang
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=notify
+User=root
+ExecStart=/usr/bin/rclone mount webdav: /gautrang \
+--config .config/rclone/rclone.conf \
+--filter-from .config/rclone/filter.txt \
+--log-file log \
+--log-level INFO \
+--default-permissions \
+--dir-perms 777 \
+--file-perms 777 \
+--poll-interval 10s \
+--allow-non-empty \
+--allow-other \
+--no-checksum \
+--no-modtime \
+--timeout 1h \
+--umask 002 \
+--vfs-cache-mode full \
+--vfs-fast-fingerprint \
+--vfs-read-chunk-size 20M \
+--buffer-size 0 \
+--vfs-read-ahead 256M \
+#--vfs-read-chunk-size-limit 6G \
+#--vfs-read-wait 2s \
+--vfs-cache-max-size 8G \
+--vfs-cache-max-age 24h \
+--rc \
+--rc-addr 127.0.0.1:5574 \
+--rc-no-auth 
+
+ExecStop=/bin/fusermount -uz /gautrang
+ExecStartPost=/usr/bin/rclone rc vfs/refresh recursive=true --url 127.0.0.1:5574 _async=true
+Restart=on-failure
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
