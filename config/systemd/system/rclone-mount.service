@@ -1,13 +1,13 @@
 [Unit]
 Description=Rclone Mount Service
-AssertPathIsDirectory=/var/www/html/gautrang
+AssertPathIsDirectory=/var/www/html
 Wants=network-online.target
 After=network-online.target
 
 [Service]
 Type=notify
 User=root
-ExecStart=/usr/bin/rclone mount webdav: /var/www/html/gautrang \
+ExecStart=/usr/bin/rclone mount webdav: /var/www/html \
 --config /home/blackhost/.config/rclone/rclone.conf \
 --filter-from /home/blackhost/.config/rclone/filter.txt \
 --log-file log \
@@ -27,14 +27,12 @@ ExecStart=/usr/bin/rclone mount webdav: /var/www/html/gautrang \
 --vfs-read-chunk-size 20M \
 --buffer-size 0 \
 --vfs-read-ahead 256M \
-#--vfs-read-chunk-size-limit 6G \
-#--vfs-read-wait 2s \
 --vfs-cache-max-size 8G \
 --vfs-cache-max-age 24h \
 --rc \
 --rc-addr 127.0.0.1:5574 \
 --rc-no-auth 
-ExecStop=/bin/fusermount -uz /var/www/html/gautrang
+ExecStop=/bin/fusermount -uz /var/www/html
 ExecStartPost=/usr/bin/rclone rc vfs/refresh recursive=true --url 127.0.0.1:5574 _async=true
 Restart=on-failure
 RestartSec=3
