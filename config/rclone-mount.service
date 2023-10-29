@@ -1,15 +1,15 @@
 [Unit]
 Description=Rclone Mount Service
-AssertPathIsDirectory=/gautrang
+AssertPathIsDirectory=/var/www/html/gautrang
 Wants=network-online.target
 After=network-online.target
 
 [Service]
 Type=notify
 User=root
-ExecStart=/usr/bin/rclone mount webdav: /gautrang \
---config .config/rclone/rclone.conf \
---filter-from .config/rclone/filter.txt \
+ExecStart=/usr/bin/rclone mount webdav: /var/www/html/gautrang \
+--config /home/blackhost/.config/rclone/rclone.conf \
+--filter-from /home/blackhost/.config/rclone/filter.txt \
 --log-file log \
 --log-level INFO \
 --default-permissions \
@@ -34,11 +34,9 @@ ExecStart=/usr/bin/rclone mount webdav: /gautrang \
 --rc \
 --rc-addr 127.0.0.1:5574 \
 --rc-no-auth 
-
-ExecStop=/bin/fusermount -uz /gautrang
+ExecStop=/bin/fusermount -uz /var/www/html/gautrang
 ExecStartPost=/usr/bin/rclone rc vfs/refresh recursive=true --url 127.0.0.1:5574 _async=true
 Restart=on-failure
 RestartSec=3
-
 [Install]
 WantedBy=multi-user.target
