@@ -8,30 +8,29 @@ After=network-online.target
 Type=notify
 User=root
 ExecStart=/usr/bin/rclone mount webdav: /var/www/html \
---config /home/blackhost/.config/rclone/rclone.conf \
---filter-from /home/blackhost/.config/rclone/filter.txt \
---log-file log \
+--config /root/.config/rclone/rclone.conf \
+--filter-from /root/.config/rclone/filter.conf \
+--log-file rclone.log \
 --log-level INFO \
 --default-permissions \
---dir-perms 777 \
---file-perms 777 \
---poll-interval 10s \
---allow-non-empty \
+--dir-perms 775 \
+--file-perms 664 \
 --allow-other \
 --no-checksum \
 --no-modtime \
 --timeout 1h \
 --umask 002 \
---vfs-cache-mode full \
---vfs-fast-fingerprint \
---vfs-read-chunk-size 20M \
---buffer-size 0 \
---vfs-read-ahead 256M \
---vfs-cache-max-size 8G \
---vfs-cache-max-age 24h \
 --rc \
 --rc-addr 127.0.0.1:5574 \
---rc-no-auth 
+--rc-no-auth \
+--vfs-cache-mode full \
+--vfs-fast-fingerprint \
+--vfs-read-chunk-size 0 \
+--buffer-size 0 \
+--vfs-read-ahead 256M \
+--vfs-cache-max-size 6G \
+--vfs-cache-max-age 24h \
+--vfs-disk-space-total-size 10T
 ExecStop=/bin/fusermount -uz /var/www/html
 ExecStartPost=/usr/bin/rclone rc vfs/refresh recursive=true --url 127.0.0.1:5574 _async=true
 Restart=on-failure
