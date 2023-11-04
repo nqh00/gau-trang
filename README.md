@@ -1,16 +1,20 @@
 ![forthebadge](https://forthebadge.com/images/badges/works-on-my-machine.svg)
 # Overview
-Solution to create a movie streaming website using _Jellyfin_. _Jellyfin_ is a free, open-source media server software that allows you to host your own movies, TV shows, and music collections. In this setup, _Jellyfin_ is seamlessly integrated with _Nginx_ acting as a reverse proxy for enhanced security and efficient handling of incoming requests while media files are sourced from multiple cloud drives using _Rclone_, allowing seamless playback directly from multiple clouds.
+This is a solution to create a media streaming website using _Jellyfin_ — a free, open-source media server software that allows you to host your own movies, TV shows, and music collections.
+
+In this setup, _Jellyfin_ is integrated with _Nginx_ acting as a reverse proxy for enhanced security and efficient handling of incoming requests while media files are sourced from multiple cloud drives by using _Rclone_, allowing playback directly from multiple clouds.
 # How it works
 | [Jellyfin](https://jellyfin.org) | [Nginx](https://www.nginx.com) | [Rclone](https://rclone.org) |
 | -------- | ----- | ------ |
-| Utilize as the core media server, managing your movie and TV show libraries. _Jellyfin Web_ offers a user-friendly interface and robust media management capabilities. | Serves as a reverse proxy, directing external requests to _Jellyfin_. It manages _SSL/TLS encryption_, load balancing, and caching, enhancing the performance and security of your media server. | Mount multiple cloud drives as a _VFS (Virtual File System)_. This integration enables _Jellyfin_ to seamlessly access and stream media files directly from the cloud, reducing the need for local storage.
+| Utilize as the core media server, managing your movie and TV show libraries.  | Serves as a reverse proxy, directing external requests to _Jellyfin_. | Mount multiple cloud drives as a _Virtual File System_. |
+| _Jellyfin Web_ offers a user-friendly interface and robust media management capabilities. | _Nginx_ manages _SSL/TLS encryption_, load balancing, and caching, enhancing the performance and security of your media server. | _Rclone_ enables _Jellyfin_ to seamlessly access and stream media files directly from the cloud, reducing the need for local storage. | 
 # Limitations
-| [Hardware Transcoding](https://jellyfin.org/docs/general/clients/codec-support) |
-| -------------------------- |
-| _Jellyfin_ has the hardware transcoding feature but in this setup I have to disable it. So now _Jellyfin_ sends media files directly to the client without prior encoding. If the client is trying to play a media such as playing a _.mkv_ file. It relies on the client's ability to transcode the video in real-time. And if the client lacks transcoding capabilities, the media codec is unsupported or incompatible with the client and users will not able to stream that media. |
+|   | [Hardware Transcoding](https://jellyfin.org/docs/general/clients/codec-support) |
+| - | ------------------------------------------------------------------------------- |
+| Reason | _Jellyfin_ has the hardware transcoding feature but in this setup I have to disable it. My server can only afford _Jellyfin_ to send media files directly to the client without prior encoding. The clients have to transcode the video by themselves. |
+| Result | If the client is trying to play a media file such as a _.mkv_ file and their device lacks transcoding capabilities, the media codec will be unsupported or incompatible with the client, thus users will not be able to stream that media. |
 # Data Flow Diagram
-![diagram](https://user-images.githubusercontent.com/76725656/280439679-928083ee-199c-406b-9417-e66f83065516.png)
+![diagram](https://user-images.githubusercontent.com/76725656/280446653-eb8edefd-3e84-4cf5-b611-94169ff6e430.png)
 # Screenshots
 | LOGIN |
 | ----- |
