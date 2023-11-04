@@ -10,7 +10,7 @@ Solution to create a movie streaming website using _Jellyfin_. _Jellyfin_ is a f
 | -------------------------- |
 | _Jellyfin_ has the hardware transcoding feature but in this setup I have to disable it. So now _Jellyfin_ sends media files directly to the client without prior encoding. If the client is trying to play a media such as playing a _.mkv_ file. It relies on the client's ability to transcode the video in real-time. And if the client lacks transcoding capabilities, the media codec is unsupported or incompatible with the client and users will not able to stream that media. |
 # Data Flow Diagram
-![diagram](https://user-images.githubusercontent.com/76725656/280393570-eb8833c6-5bcf-48b2-b277-09dbae0578c9.png)
+![diagram](https://user-images.githubusercontent.com/76725656/280439679-928083ee-199c-406b-9417-e66f83065516.png)
 # Screenshots
 | LOGIN |
 | ----- |
