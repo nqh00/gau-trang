@@ -6,32 +6,36 @@ Solution to create a movie streaming website using _Jellyfin_. _Jellyfin_ is a f
 | -------- | ----- | ------ |
 | Utilize as the core media server, managing your movie and TV show libraries. _Jellyfin Web_ offers a user-friendly interface and robust media management capabilities. | Serves as a reverse proxy, directing external requests to _Jellyfin_. It manages _SSL/TLS encryption_, load balancing, and caching, enhancing the performance and security of your media server. | Mount multiple cloud drives as a _VFS (Virtual File System)_. This integration enables _Jellyfin_ to seamlessly access and stream media files directly from the cloud, reducing the need for local storage.
 # Limitations
-| [Transcoding Dependency](https://jellyfin.org/docs/general/clients/codec-support) |
+| [Hardware Transcoding](https://jellyfin.org/docs/general/clients/codec-support) |
 | -------------------------- |
-| _Jellyfin_ sends media files directly to the client without prior encoding. If the media codec is unsupported or incompatible with the client (such as playing a _.mkv_ file), it relies on the client's ability to transcode the video in real-time. If the client lacks transcoding capabilities, users will not stream that media. |
+| _Jellyfin_ has the hardware transcoding feature but in this setup I have to disable it. So now _Jellyfin_ sends media files directly to the client without prior encoding. If the client is trying to play a media such as playing a _.mkv_ file. It relies on the client's ability to transcode the video in real-time. And if the client lacks transcoding capabilities, the media codec is unsupported or incompatible with the client and users will not able to stream that media. |
 # Data Flow Diagram
 ![diagram](https://user-images.githubusercontent.com/76725656/280393570-eb8833c6-5bcf-48b2-b277-09dbae0578c9.png)
 # Screenshots
 | LOGIN |
 | ----- |
-| ![LOGIN](https://user-images.githubusercontent.com/76725656/280264563-2eae9e10-619e-4541-affd-0451de84c18e.png) |
+| ![LOGIN](https://user-images.githubusercontent.com/76725656/280435375-82f0420d-7811-4576-ab70-0c78d4d56ed2.png) |
 
 | HOME SCREEN |
 | ----------- |
-| ![HOME SCREEN](https://user-images.githubusercontent.com/76725656/280264968-5068fb12-0678-402d-8f97-bad6a3ef9d5c.png) |
+| ![HOME SCREEN](https://user-images.githubusercontent.com/76725656/280435378-f872904e-10b8-4c0b-a7ab-ffc466e317a8.png) |
 
 | MEDIA SCREEN |
 | ------------ |
-| ![MEDIA SCREEN](https://user-images.githubusercontent.com/76725656/280265366-87ce9a92-e3ec-425a-a469-96c6c52b109d.png) |
+| ![MEDIA SCREEN](https://user-images.githubusercontent.com/76725656/280435379-97fc89de-7975-4555-811a-81f1122e85cc.png) |
 
 | TITLE SCREEN |
 | ------------ |
-| ![TITLE SCREEN](https://user-images.githubusercontent.com/76725656/280266680-1d18dac5-110e-4899-a5b2-dab630fc77eb.png) |
+| ![TITLE SCREEN](https://user-images.githubusercontent.com/76725656/280435380-16c1f262-8114-4257-b536-84180c196bba.png) |
 
 | EPISODE SCREEN |
 | -------------- |
-| ![EPISODE SCREEN](https://user-images.githubusercontent.com/76725656/280269056-85fca8b3-900c-4169-a6fd-d37be5be85f6.png) |
+| ![EPISODE SCREEN](https://user-images.githubusercontent.com/76725656/280435381-93576b3a-7f49-4e76-b12e-b0c1dc4ff892.png) |
+
+| CONTEXT MENU |
+| -------------- |
+| ![CONTEXT MENU](https://user-images.githubusercontent.com/76725656/280435382-4ed2da50-e0bc-41c6-8581-3d815a5f0fcc.png) |
 
 | MEDIA PLAYER |
 | ------------ |
-| ![MEDIA PLAYER](https://user-images.githubusercontent.com/76725656/280269194-8457b58a-2a5a-4fb4-a5e0-8fc5d2f6fe34.png) |
+| ![MEDIA PLAYER](https://user-images.githubusercontent.com/76725656/280435940-dbb8a787-84de-4045-b676-2e879d11a187.png) |
