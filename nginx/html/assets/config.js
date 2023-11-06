@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.title = currentDir;
 
     // Add folder title and href.
-    h1Element.innerHTML = '<a href="/home">' + currentDir + '</a>';
+    h1Element.innerHTML = '<a href="/admin">' + currentDir + '</a>';
 
     function isFolderLink(link) {
         var href = link.getAttribute('href');
@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 var hrefSplit = link.getAttribute('href').split('.');
                 var fileExt = hrefSplit[hrefSplit.length - 1].toLowerCase();
                 var displayedTitle = link.getAttribute('title').split('.').slice(0, -1).join('.');
-                displayedTitle = displayedTitle.length > 20 ? displayedTitle.substring(0, 20) + '—' : displayedTitle + '.' ;
+                displayedTitle = displayedTitle.length > 23 ? displayedTitle.substring(0, 23) + '—' : displayedTitle + '.' ;
                 link.innerHTML = '<img src="data:image/svg+xml;base64,CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIgogICAgIGNsYXNzPSJzdmctc25vd2ViIHN2Zy10aGVtZS1kYXJrIgogICAgIHg9IjAiCiAgICAgeT0iMCIKICAgICB3aWR0aD0iMTAwJSIKICAgICBoZWlnaHQ9IjI1IgogICAgIHZpZXdCb3g9IjAgMCAxMDAgMTAwIgogICAgIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiCj4KPGRlZnM+CiAgICA8c3R5bGU+CiAgICAgICAgCiAgICAgICAgICAgIAogICAgICAgICAgICAKICAgICAgICAgICAgCiAgICAgICAgCgogICAgICAgIC5zdmctZmlsbC1wcmltYXJ5IHsKICAgICAgICAgICAgZmlsbDogI2ZmYTEwMDsKICAgICAgICB9CgogICAgICAgIC5zdmctZmlsbC1zZWNvbmRhcnkgewogICAgICAgICAgICBmaWxsOiAjNjVDREFFOwogICAgICAgIH0KCiAgICAgICAgLnN2Zy1maWxsLXRlcnRpYXJ5IHsKICAgICAgICAgICAgZmlsbDogIzM3QTk4NzsKICAgICAgICB9CgogICAgICAgIC5zdmctc3Ryb2tlLXByaW1hcnkgewogICAgICAgICAgICBzdHJva2U6ICNmZmExMDA7CiAgICAgICAgfQoKICAgICAgICAuc3ZnLXN0cm9rZS1zZWNvbmRhcnkgewogICAgICAgICAgICBzdHJva2U6ICM2NUNEQUU7CiAgICAgICAgfQoKICAgICAgICAuc3ZnLXN0cm9rZS10ZXJ0aWFyeSB7CiAgICAgICAgICAgIHN0cm9rZTogIzM3QTk4NzsKICAgICAgICB9CiAgICA8L3N0eWxlPgo8L2RlZnM+CiAgICA8cGF0aCBkPSJNMzAuMSw4NS43SDY5LjlhNy45LDcuOSwwLDAsMCw3LjktNy45VjM5LjdhMy45LDMuOSwwLDAsMC0xLjItMi44TDU1LjEsMTUuNGEzLjksMy45LDAsMCwwLTIuOC0xLjFIMzAuMWE3LjksNy45LDAsMCwwLTcuOSw3LjlWNzcuOEE3LjksNy45LDAsMCwwLDMwLjEsODUuN1oiCiAgICAgIGZpbGw9Im5vbmUiIGNsYXNzPSJzdmctc3Ryb2tlLXByaW1hcnkiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSI4Ii8+Cgo8L3N2Zz4=" style="margin:0 5px -10px 0"></img><a href="' + link.getAttribute('href') + '">' + displayedTitle + fileExt + '</a>';
             }
         } else if (link.textContent.indexOf("Parent directory") >= 0) {

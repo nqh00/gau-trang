@@ -2,36 +2,13 @@ const gestureZone = document.querySelector('.mainAnimatedPages');
 let touchstartX = 0, touchstartY = 0, touchendX = 0, touchendY = 0;
 let footerTimer; // Biến để lưu trữ timer cho việc tự động ẩn footer
 
-gestureZone.addEventListener('touchstart', function(event) {
-  touchstartX = event.changedTouches[0].screenX;
-  touchstartY = event.changedTouches[0].screenY;
-}, false);
-
-gestureZone.addEventListener('touchend', function(event) {
-  touchendX = event.changedTouches[0].screenX;
-  touchendY = event.changedTouches[0].screenY;
-  
-  const delx = touchendX - touchstartX;
-  const dely = touchendY - touchstartY;
-  
-  if (Math.abs(delx) < Math.abs(dely)) {
-    if (dely < 0) {
-    // Swipe down gesture: ẩn footer
-      hideFooter();
-    } else {
-      // Swipe up gesture: hiển thị footer
-      showFooter();
-    }
-  }
-}, false);
-
 gestureZone.addEventListener('wheel', function(event) {
   if (event.deltaY < 0) {
-    // Scroll wheel down: ẩn footer
-    hideFooter();
-  } else {
     // Scroll wheel up: hiển thị footer
     showFooter();
+  } else {
+    // Scroll wheel down: ẩn footer
+    hideFooter();
   }
 });
 

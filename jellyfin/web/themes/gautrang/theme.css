@@ -57,7 +57,7 @@ body, h1, h2, h3, h4 {font-family: 'Archivo', sans-serif;}.emby-textarea {font-f
 .headerCastButton{display: none}.headerSyncButton{display: none}.pageTitle.pageTitleWithLogo.pageTitleWithDefaultLogo{margin-left: auto;margin-right: auto;background-position: center;padding-bottom:1em}.headerTabs.sectionTabs{text-size-adjust: 110%;font-size: 110%;margin-top:0}.emby-tab-button{padding: 0 2em 1em 2em}.skinHeader-withBackground, .skinHeader.semiTransparent, .mainDrawer {background: rgba(40, 40, 40, 0.75);backdrop-filter: blur(1em) !important;-webkit-backdrop-filter: blur(1em) !important;}
 
 /* -------------------- CONTEXT MENU -------------------- */
-.listItem {padding: 0.1em !important;border-radius: 0.5em !important;}.actionSheet {border-radius: 0.5em !important;background-color: rgba(0,0,0,0.8) !important;-webkit-backdrop-filter: blur(1.5em) !important;backdrop-filter: blur(1.5em) !important;}.actionsheetListItemBody {padding: 0.1em 1em 0.1em 0.1em !important;}
+.listItem {padding: 0.1em !important;border-radius: 0.5em !important;}.actionSheet{border-radius: 0.5em !important;background-color: rgba(0,0,0,0.8) !important;-webkit-backdrop-filter: blur(1.5em) !important;backdrop-filter: blur(1.5em) !important;margin-top:-2em!important;}.actionsheetListItemBody {padding: 0.1em 1em 0.1em 0.1em !important;}
 
 /* -------------------- TITLE PAGE -------------------- */
 .detailSectionContent{max-width:66em}.trackSelections{max-width:22em}.detailPagePrimaryContainer{backdrop-filter:blur(1em);webkit-backdrop-filter:blur(1em)}
