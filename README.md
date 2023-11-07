@@ -16,30 +16,7 @@ In this setup, _Jellyfin_ is integrated with _Nginx_ acting as a reverse proxy f
 # Data Flow Diagram
 ![diagram](https://user-images.githubusercontent.com/76725656/280446653-eb8edefd-3e84-4cf5-b611-94169ff6e430.png)
 # Screenshots
-| LOGIN |
-| ----- |
-| ![LOGIN](https://user-images.githubusercontent.com/76725656/280435375-82f0420d-7811-4576-ab70-0c78d4d56ed2.png) |
-
-| HOME SCREEN |
-| ----------- |
-| ![HOME SCREEN](https://user-images.githubusercontent.com/76725656/280435378-f872904e-10b8-4c0b-a7ab-ffc466e317a8.png) |
-
-| MEDIA SCREEN |
-| ------------ |
-| ![MEDIA SCREEN](https://user-images.githubusercontent.com/76725656/280435379-97fc89de-7975-4555-811a-81f1122e85cc.png) |
-
-| TITLE SCREEN |
-| ------------ |
-| ![TITLE SCREEN](https://user-images.githubusercontent.com/76725656/280435380-16c1f262-8114-4257-b536-84180c196bba.png) |
-
-| EPISODE SCREEN |
-| -------------- |
-| ![EPISODE SCREEN](https://user-images.githubusercontent.com/76725656/280435381-93576b3a-7f49-4e76-b12e-b0c1dc4ff892.png) |
-
-| CONTEXT MENU |
-| -------------- |
-| ![CONTEXT MENU](https://user-images.githubusercontent.com/76725656/280435382-4ed2da50-e0bc-41c6-8581-3d815a5f0fcc.png) |
-
-| MEDIA PLAYER |
-| ------------ |
-| ![MEDIA PLAYER](https://user-images.githubusercontent.com/76725656/280435940-dbb8a787-84de-4045-b676-2e879d11a187.png) |
+## DESKTOP LAYOUT
+![DESKTOP](https://user-images.githubusercontent.com/76725656/280929392-46b52bff-5cb7-4b71-b500-add0c87e7297.gif)
+## MOBILE LAYOUT
+![MOBILE](https://user-images.githubusercontent.com/76725656/280926230-29b92339-784d-4093-ba5a-9b5642381401.gif)
