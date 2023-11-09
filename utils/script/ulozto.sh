@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DESTINATION_PATH="onedrive:"
+DESTINATION_PATH="trois:Film/rarefilmm.com"
 LOCAL_PATH=".temp"
 SOURCE_PATH="real-debrid:links"
 
