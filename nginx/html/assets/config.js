@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.title = currentDir;
 
     // Add folder title and href.
-    h1Element.innerHTML = '<a href="/admin">' + currentDir + '</a>';
+    h1Element.innerHTML = '<a href="/">' + currentDir + '</a>';
 
     function isFolderLink(link) {
         var href = link.getAttribute('href');
