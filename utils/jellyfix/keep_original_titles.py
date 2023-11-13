@@ -19,13 +19,13 @@ def fix(client, item_id):
         print(f"Renaming '{detail.name}' to '{detail.original_title}'")
         detail.name = detail.original_title
         client.update_item(detail)
-    else:
-        print(f"No need to rename '{detail.name}'")
+#    else:
+#        print(f"No need to rename '{detail.name}'")
 
 
 def main():
     parser = ArgumentParser(description=__doc__)
-    parser.add_argument("SERVER", help="Example: http://127.0.0.1:8096")
+    parser.add_argument("SERVER", help="Example: http://localhost:8096")
     args = parser.parse_args()
 
     client = JellyfinClient(args.SERVER)
