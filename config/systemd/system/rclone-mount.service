@@ -10,14 +10,14 @@ User=root
 ExecStart=/usr/bin/rclone mount webdav: /var/www/html \
 --config /root/.config/rclone/rclone.conf \
 --filter-from /root/.config/rclone/filter.conf \
---log-file rclone.log \
---log-level INFO \
 --default-permissions \
 --dir-perms 775 \
 --file-perms 664 \
+--uid 112 \
+--gid 123 \
 --allow-other \
 --no-checksum \
---no-modtime \
+--use-server-modtime \
 --timeout 1h \
 --umask 002 \
 --rc \
@@ -26,11 +26,12 @@ ExecStart=/usr/bin/rclone mount webdav: /var/www/html \
 --vfs-cache-mode full \
 --vfs-fast-fingerprint \
 --vfs-read-chunk-size 0 \
+--vfs-read-ahead 1G \
 --buffer-size 0 \
---vfs-read-ahead 256M \
---vfs-cache-max-size 6G \
---vfs-cache-max-age 24h \
---vfs-disk-space-total-size 10T
+--vfs-cache-max-size 20G \
+--vfs-cache-max-age 0 \
+--vfs-cache-poll-interval 1s \
+--vfs-disk-space-total-size 0
 ExecStop=/bin/fusermount -uz /var/www/html
 ExecStartPost=/usr/bin/rclone rc vfs/refresh recursive=true --url 127.0.0.1:5574 _async=true
 Restart=on-failure
