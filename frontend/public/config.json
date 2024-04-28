@@ -1,5 +1,5 @@
 {
-  "defaultServerURLs": [],
-  "allowServerSelection": true,
+  "defaultServerURLs": ["abc.gautrang.xyz"],
+  "allowServerSelection": false,
   "routerMode": "hash"
 }
