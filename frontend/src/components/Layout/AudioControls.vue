@@ -5,11 +5,11 @@
     <VFooter
       v-if="
         playbackManager.isPlaying &&
-          playbackManager.currentlyPlayingMediaType === 'Audio' &&
-          playbackManager.currentItem
+          playbackManager.isAudio &&
+          !isNil(playbackManager.currentItem)
       "
       app
-      class="user-select-none pa-0">
+      class="uno-select-none pa-0">
       <VContainer fluid>
         <VRow class="ma-0">
           <VCol
@@ -46,7 +46,7 @@
                       :to="getItemDetailsLink(artist, 'MusicArtist')"
                       custom>
                       <span
-                        class="font-weight-light text-caption text-truncate link"
+                        class="text-caption text-truncate link"
                         @click="navigate">
                         {{ artist.Name }}
                       </span>
@@ -109,11 +109,12 @@
 </template>
 
 <script setup lang="ts">
+import { isNil } from '@/utils/validation';
 import { playbackManager } from '@/store/playback-manager';
 import { getItemDetailsLink } from '@/utils/items';
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 /* TODO: This class was extracted from VAvatar. Remove this once a JAvatar component is created */
 .img {
   align-items: center;

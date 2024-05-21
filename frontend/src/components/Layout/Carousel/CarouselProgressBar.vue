@@ -3,7 +3,7 @@
     <div
       v-for="i in pages"
       :key="`progress-key-${i}`"
-      :class="useResponsiveClasses('progress-bar')"
+      :class="useResponsiveClasses('progress-bar uno-cursor-pointer')"
       @click.capture="emit('progressClicked', i - 1)">
       <div
         :class="useResponsiveClasses(barClasses[i - 1])"
@@ -68,7 +68,7 @@ const barClasses = computed(() =>
 );
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .progress-bar-container {
   box-sizing: border-box;
   display: flex;
@@ -81,7 +81,6 @@ const barClasses = computed(() =>
 }
 
 .progress-bar {
-  cursor: pointer !important;
   height: 30px;
   display: flex;
   justify-content: center;

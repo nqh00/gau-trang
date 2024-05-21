@@ -13,7 +13,7 @@
           cols="12"
           md="9">
           <h1
-            class="text-h4 font-weight-light"
+            class="text-h4"
             :class="{ 'text-center': !$vuetify.display.mdAndUp }">
             {{ item.Name }}
           </h1>
@@ -122,5 +122,5 @@ const { data: relatedItems } = await useBaseItem(getLibraryApi, 'getSimilarItems
 }));
 
 route.meta.title = item.value.Name;
-route.meta.backdrop.blurhash = getBlurhash(item.value, ImageType.Backdrop);
+route.meta.layout.backdrop.blurhash = getBlurhash(item.value, ImageType.Backdrop);
 </script>

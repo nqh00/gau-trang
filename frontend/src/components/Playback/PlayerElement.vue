@@ -1,11 +1,11 @@
 <template>
   <template v-if="mediaElementType">
     <Teleport
-      :to="teleportTarget"
-      :disabled="!teleportTarget">
+      :to="videoContainerRef"
+      :disabled="!videoContainerRef">
       <Component
         :is="mediaElementType"
-        v-show="mediaElementType === 'video' && teleportTarget"
+        v-show="mediaElementType === 'video' && videoContainerRef"
         ref="mediaElementRef"
         :poster="String(posterUrl)"
         autoplay
@@ -37,7 +37,7 @@ import {
   mediaWebAudio
 } from '@/store';
 import { playbackManager } from '@/store/playback-manager';
-import { playerElement } from '@/store/player-element';
+import { playerElement, videoContainerRef } from '@/store/player-element';
 import { getImageInfo } from '@/utils/images';
 import { isNil } from '@/utils/validation';
 
@@ -73,32 +73,16 @@ async function detachWebAudio(): Promise<void> {
 }
 
 const mediaElementType = computed<'audio' | 'video' | undefined>(() => {
-  if (playbackManager.currentlyPlayingMediaType === 'Audio') {
+  if (playbackManager.isAudio) {
     return 'audio';
-  } else if (playbackManager.currentlyPlayingMediaType === 'Video') {
+  } else if (playbackManager.isVideo) {
     return 'video';
-  }
-});
-
-/**
- * If the player is a video element and we're in the PiP player or fullscreen video playback,
- * we need to ensure the DOM elements are mounted before the teleport target is ready
- */
-const teleportTarget = computed<
-'.fullscreen-video-container' | '.minimized-video-container' | undefined
->(() => {
-  if (playbackManager.currentlyPlayingMediaType === 'Video') {
-    if (playerElement.isFullscreenMounted.value) {
-      return '.fullscreen-video-container';
-    } else if (playerElement.isPiPMounted.value) {
-      return '.minimized-video-container';
-    }
   }
 });
 
 const posterUrl = computed(() =>
   !isNil(playbackManager.currentItem)
-  && playbackManager.currentlyPlayingMediaType === 'Video'
+  && playbackManager.isVideo
     ? getImageInfo(playbackManager.currentItem, {
       preferBackdrop: true
     }).url
@@ -109,7 +93,7 @@ const posterUrl = computed(() =>
  * Called by the media element when the playback is ready
  */
 async function onLoadedData(): Promise<void> {
-  if (playbackManager.currentlyPlayingMediaType === 'Video') {
+  if (playbackManager.isVideo) {
     if (mediaElementRef.value) {
       /**
        * Makes the resume start from the correct time
@@ -151,19 +135,6 @@ function onHlsEror(_event: typeof Hls.Events.ERROR, data: ErrorData): void {
     }
   }
 }
-
-watch(
-  () => [
-    playbackManager.currentSubtitleStreamIndex,
-    playerElement.isFullscreenMounted,
-    playerElement.isPiPMounted
-  ],
-  async (newVal) => {
-    if (newVal[1] || newVal[2]) {
-      await playerElement.applyCurrentSubtitle();
-    }
-  }
-);
 
 watch(mediaElementRef, async () => {
   detachHls();
@@ -210,7 +181,7 @@ watch(
       mediaElementRef.value.src = String(newUrl);
     } else if (
       hls
-      && playbackManager.currentlyPlayingMediaType === 'Video'
+      && playbackManager.isVideo
       && newUrl
     ) {
       /**

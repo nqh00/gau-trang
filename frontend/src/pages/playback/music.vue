@@ -22,7 +22,7 @@
       <JTransition mode="out-in">
         <Swiper
           v-if="!isVisualizing"
-          class="d-flex justify-center align-center user-select-none"
+          class="d-flex justify-center align-center uno-select-none"
           :modules="modules"
           :slides-per-view="4"
           centered-slides
@@ -45,7 +45,7 @@
         </Swiper>
         <MusicVisualizer
           v-else
-          class="d-flex justify-center align-center user-select-none presentation-height" />
+          class="d-flex justify-center align-center uno-select-none presentation-height" />
       </JTransition>
       <VRow class="justify-center align-center mt-3">
         <VCol cols="6">
@@ -88,12 +88,13 @@
 
 <route lang="yaml">
 meta:
-  layout: fullpage
-  backdrop:
-    opacity: 0.75
-  transition:
-    enter: 'scroll-y-reverse-transition'
-    leave: 'scroll-y-transition'
+  layout:
+    name: fullpage
+    backdrop:
+      opacity: 0.75
+    transition:
+      enter: 'slide-y-reverse'
+      leave: 'slide-y'
 </route>
 
 <script setup lang="ts">
@@ -150,7 +151,7 @@ watchEffect(() => {
   }
 
   if (backdropHash.value) {
-    route.meta.backdrop.blurhash = backdropHash.value;
+    route.meta.layout.backdrop.blurhash = backdropHash.value;
   }
 }
 );
@@ -165,7 +166,7 @@ function onSlideChange(): void {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .album-cover {
   position: relative;
   min-width: 65vh;

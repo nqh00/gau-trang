@@ -28,7 +28,7 @@
                 class="text-subtitle-1 text--secondary font-weight-medium text-capitalize">
                 {{ $t('person') }}
               </div>
-              <h1 class="text-h4 text-md-h2 font-weight-light">
+              <h1 class="text-h4 text-md-h2">
                 {{ item.Name }}
               </h1>
             </div>
@@ -237,7 +237,7 @@ const birthPlace = computed(
 );
 
 route.meta.title = item.value.Name;
-route.meta.backdrop.blurhash = getBlurhash(item.value, ImageType.Backdrop);
+route.meta.layout.backdrop.blurhash = getBlurhash(item.value, ImageType.Backdrop);
 
 /**
  * Pick the most relevant tab to display at mount

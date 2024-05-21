@@ -15,12 +15,12 @@ import { vuetify } from '@/plugins/vuetify';
 /**
  * - GLOBAL STYLES -
  */
-import 'inter-ui/inter-variable.css';
+import '@fontsource-variable/figtree';
 /* eslint-disable-next-line import/no-extraneous-dependencies */
 import '@unocss/reset/tailwind-compat.css';
 import 'uno.css';
 import 'virtual:unocss-devtools';
-import '@/assets/styles/global.scss';
+import '@/assets/styles/global.css';
 
 /**
  * - VUE PLUGINS, STORE AND DIRECTIVE -
@@ -54,9 +54,5 @@ await router.isReady();
 
 /**
  * MOUNTING POINT
- *
- * See how we remove the splashcreen on App.vue file
  */
-window.requestAnimationFrame(() => {
-  app.mount('#app');
-});
+app.mount(document.body);

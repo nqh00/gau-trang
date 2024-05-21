@@ -3,8 +3,7 @@
     <ItemsCarousel
       v-if="carousel.length > 0"
       :items="carousel"
-      page-backdrop
-      class="top-carousel">
+      page-backdrop>
       <template #referenceText>
         {{ $t('recentlyAdded') }}
       </template>
@@ -33,7 +32,8 @@ const excludeViewTypes = new Set([
 
 <route lang="yaml">
 meta:
-  transparentLayout: true
+  layout:
+    transparent: true
 </route>
 
 <script setup lang="ts">
@@ -134,7 +134,7 @@ function getHomeSectionContent(section: HomeSection): BaseItemDto[] {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .sections-after-header {
   position: relative;
   z-index: 4;

@@ -1,7 +1,7 @@
 <template>
   <VTable
     density="compact"
-    class="track-table user-select-none">
+    class="track-table uno-select-none">
     <thead>
       <tr>
         <th
@@ -162,7 +162,7 @@ async function playTracks(track: BaseItemDto): Promise<void> {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .v-data-table.track-table {
   background-color: transparent;
 }

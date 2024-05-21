@@ -9,6 +9,7 @@
       content-class="minimized-overlay"
       :width="$vuetify.display.mobile ? '60vw' : '25vw'">
       <div
+        ref="videoContainerRef"
         class="minimized-video-container" />
       <VOverlay
         :model-value="isHovering"
@@ -34,9 +35,8 @@
             </VBtn>
           </div>
           <div
-            class="absolute-cover pointer-events-none d-flex flex-row justify-center align-center">
+            class="d-flex flex-row justify-center align-center">
             <VBtn
-              class="pointer-events-all"
               icon
               size="large"
               @click="playbackManager.setPreviousItem">
@@ -45,7 +45,6 @@
               </VIcon>
             </VBtn>
             <VBtn
-              class="pointer-events-all"
               icon
               size="x-large"
               @click="playbackManager.playPause">
@@ -55,9 +54,9 @@
               </VIcon>
             </VBtn>
             <VBtn
-              class="pointer-events-all"
               icon
               size="large"
+              :disabled="!playbackManager.nextItem"
               @click="playbackManager.setNextItem">
               <VIcon size="32">
                 <IMdiSkipNext />
@@ -71,21 +70,8 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted } from 'vue';
 import { playbackManager } from '@/store/playback-manager';
-import { playerElement } from '@/store/player-element';
-
-onMounted(() => {
-  playerElement.isPiPMounted.value = true;
-});
-
-onBeforeUnmount(() => {
-  /**
-   * We need to destroy JASSUB so the canvas can be recreated in the other view
-   */
-  playerElement.freeSsaTrack();
-  playerElement.isPiPMounted.value = false;
-});
+import { playerElement, videoContainerRef } from '@/store/player-element';
 </script>
 
 <style scoped>

@@ -1,20 +1,19 @@
 <template>
   <component
-    :is="getComponent()"
+    :is="props.group ? TransitionGroup : Transition"
     class="j-transition"
     v-bind="mergeProps($props, $attrs)"
-    :name="`j-transition-${props.name}`">
+    :name="prefersNoMotion || props.disabled ? undefined : `j-transition-${props.name}`">
     <slot />
   </component>
 </template>
 
 <script setup lang="ts">
-import { Transition, TransitionGroup, type TransitionProps, type Component as VueComponent, mergeProps } from 'vue';
-import JNoop from '@/components/lib/JNoop.vue';
+import { Transition, TransitionGroup, type TransitionProps, mergeProps } from 'vue';
 import { prefersNoMotion } from '@/store';
 
 export interface JTransitionProps extends BetterOmit<TransitionProps, 'name'> {
-  name?: 'fade' | 'rotated-zoom' | 'slide-y-reverse' | 'slide-x' | 'slide-x-reverse';
+  name?: 'fade' | 'rotated-zoom' | 'slide-y' | 'slide-y-reverse' | 'slide-x' | 'slide-x-reverse';
   /**
    * Transition group props
    */
@@ -24,22 +23,10 @@ export interface JTransitionProps extends BetterOmit<TransitionProps, 'name'> {
    * JTransition custom props
    */
   group?: boolean;
+  disabled?: boolean;
 }
 
-const props = withDefaults(defineProps<JTransitionProps>(), { name: 'fade' });
-
-/**
- * Get the component to use based on props and the current motion preference
- */
-function getComponent(): VueComponent {
-  if (prefersNoMotion.value) {
-    return JNoop;
-  } else if (props.group) {
-    return TransitionGroup;
-  } else {
-    return Transition;
-  }
-}
+const props = withDefaults(defineProps<JTransitionProps>(), { name: 'fade', group: undefined, disabled: undefined });
 </script>
 
 <!-- TODO: Set scoped and remove .j-transition* prefix after: https://github.com/vuejs/core/issues/5148 -->
@@ -81,8 +68,17 @@ function getComponent(): VueComponent {
 .j-transition-slide-y-reverse-enter-active,
 .j-transition-slide-y-reverse-leave-active,
 .j-transition-slide-x-enter-active,
-.j-transition-slide-x-leave-active {
+.j-transition-slide-x-leave-active,
+.j-transition-slide-y-enter-from,
+.j-transition-slide-y-leave-to {
   transition-property: transform, opacity !important;
+}
+
+/** slide-y */
+.j-transition-slide-y-enter-from,
+.j-transition-slide-y-leave-to {
+  opacity: 0;
+  transform: translateY(-15px);
 }
 
 /** slide-y-reverse */

@@ -67,7 +67,7 @@ import { remote } from '@/plugins/remote';
 
 const route = useRoute();
 const { y } = windowScroll;
-const transparentAppBar = computed(() => Boolean(route.meta.transparentLayout) && y.value < 10);
+const transparentAppBar = computed(() => route.meta.layout.transparent && y.value < 10);
 
 /**
  * Cycle between the different color schemas
@@ -85,7 +85,7 @@ function switchColorTheme(): void {
 const navigationDrawer = inject<Ref<boolean>>('NavigationDrawer');
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .app-bar-safe-zone {
   height: calc(48px + env(safe-area-inset-top)) !important;
 }

@@ -83,7 +83,8 @@
 
 <route lang="yaml">
 meta:
-  layout: server
+  layout:
+    name: server
 </route>
 
 <script setup lang="ts">
@@ -161,7 +162,7 @@ function previousStep(): void {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .transparent-background {
   background-color: transparent !important;
 }

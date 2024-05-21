@@ -22,7 +22,7 @@
             block
             size="large"
             variant="elevated"
-            @click="router.push('/server/select')">
+            @click.prevent="router.push('/server/login')">
             {{ $t('changeServer') }}
           </VBtn>
         </VCol>
@@ -44,7 +44,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, unref } from 'vue';
+import { shallowRef, unref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router/auto';
 import { remote } from '@/plugins/remote';
@@ -53,10 +53,10 @@ import { getJSONConfig } from '@/utils/external-config';
 const jsonConfig = await getJSONConfig();
 const router = useRouter();
 const i18n = useI18n();
-const valid = ref(false);
+const valid = shallowRef(false);
 const previousServerLength = unref(remote.auth.servers.length);
-const serverUrl = ref('');
-const loading = ref(false);
+const serverUrl = shallowRef('');
+const loading = shallowRef(false);
 
 const rules = [
   (v: string): boolean | string => !!v.trim() || i18n.t('required')
@@ -73,7 +73,7 @@ async function connectToServer(): Promise<void> {
 
     await (previousServerLength === 0
       ? router.push('/server/login')
-      : router.push('/server/select'));
+      : router.push('/server/login'));
   } finally {
     loading.value = false;
   }
