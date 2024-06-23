@@ -38,9 +38,10 @@
 
 <script setup lang="ts">
 import IMdiHome from 'virtual:icons/mdi/home';
+import IMdiKeyChain from 'virtual:icons/mdi/key-chain';
 import { computed, inject, type Ref } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useRoute } from 'vue-router/auto';
+import { useRoute } from 'vue-router';
 import type { RouteNamedMap } from 'vue-router/auto-routes';
 import type { getLibraryIcon } from '@/utils/items';
 
@@ -66,6 +67,11 @@ const items = [
     icon: IMdiHome,
     title: t('home'),
     to: '/'
+  },
+  {
+    icon: IMdiKeyChain,
+    title: 'Jellyseerr',
+    to: '/io.gautrang.io'
   }
 ];
 </script>

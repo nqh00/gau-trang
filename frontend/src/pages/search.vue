@@ -83,7 +83,7 @@ import { getItemsApi } from '@jellyfin/sdk/lib/utils/api/items-api';
 import { getPersonsApi } from '@jellyfin/sdk/lib/utils/api/persons-api';
 import { refDebounced } from '@vueuse/core';
 import { computed, shallowRef } from 'vue';
-import { useRoute } from 'vue-router/auto';
+import { useRoute } from 'vue-router';
 import { apiStore } from '@/store/api';
 import { useResponsiveClasses } from '@/composables/use-responsive-classes';
 import { useBaseItem } from '@/composables/apis';
@@ -94,7 +94,7 @@ const searchTab = shallowRef(0);
 
 const searchQuery = computed(() => route.query.q?.toString() ?? '');
 const searchDebounced = refDebounced(searchQuery, 400);
-const itemSearchMethod = computed(() => searchDebounced.value ? 'getItemsByUserId' : undefined);
+const itemSearchMethod = computed(() => searchDebounced.value ? 'getItems' : undefined);
 const peopleSearchMethod = computed(() => searchDebounced.value ? 'getPersons' : undefined);
 const { loading: itemLoading, data: itemSearch } = await useBaseItem(getItemsApi, itemSearchMethod, {
   skipCache: { request: true }

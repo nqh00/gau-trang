@@ -20,7 +20,7 @@
     </VAppBar>
     <VContainer class="after-second-toolbar">
       <ItemGrid
-        v-if="genres.length > 0"
+        v-if="genres.length"
         :items="genres" />
       <VRow
         justify="center">
@@ -53,7 +53,7 @@ import {
 import { getItemsApi } from '@jellyfin/sdk/lib/utils/api/items-api';
 import { getUserLibraryApi } from '@jellyfin/sdk/lib/utils/api/user-library-api';
 import { computed } from 'vue';
-import { useRoute } from 'vue-router/auto';
+import { useRoute } from 'vue-router';
 import { isStr } from '@/utils/validation';
 import { useResponsiveClasses } from '@/composables/use-responsive-classes';
 import { useBaseItem } from '@/composables/apis';

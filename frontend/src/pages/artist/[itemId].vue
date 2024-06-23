@@ -152,7 +152,7 @@ import { getItemsApi } from '@jellyfin/sdk/lib/utils/api/items-api';
 import { getLibraryApi } from '@jellyfin/sdk/lib/utils/api/library-api';
 import { getUserLibraryApi } from '@jellyfin/sdk/lib/utils/api/user-library-api';
 import { computed, ref } from 'vue';
-import { useRoute } from 'vue-router/auto';
+import { useRoute } from 'vue-router';
 import { msToTicks } from '@/utils/time';
 import { defaultSortOrder as sortBy } from '@/utils/items';
 import { getBlurhash } from '@/utils/images';
@@ -227,17 +227,17 @@ route.meta.layout.backdrop.blurhash = getBlurhash(item.value, ImageType.Backdrop
 /**
  * Set the most appropiate starting tag
  */
-if (discography.value.length > 0) {
+if (discography.value.length) {
   activeTab.value = 0;
-} else if (albums.value.length > 0) {
+} else if (albums.value.length) {
   activeTab.value = 1;
-} else if (eps.value.length > 0) {
+} else if (eps.value.length) {
   activeTab.value = 2;
-} else if (singles.value.length > 0) {
+} else if (singles.value.length) {
   activeTab.value = 3;
-} else if (appearances.value.length > 0) {
+} else if (appearances.value.length) {
   activeTab.value = 4;
-} else if (musicVideos.value.length > 0) {
+} else if (musicVideos.value.length) {
   activeTab.value = 5;
 } else {
   // Overview

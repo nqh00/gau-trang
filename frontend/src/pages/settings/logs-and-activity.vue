@@ -11,7 +11,7 @@
             {{ t('logs') }}
           </h2>
           <VList
-            v-if="logs.length > 0"
+            v-if="logs.length"
             key="log-list"
             lines="two"
             class="mb-2">
@@ -54,7 +54,7 @@
             {{ t('activity') }}
           </h2>
           <VList
-            v-if="activityList.length > 0"
+            v-if="activityList.length"
             key="activity-list"
             lines="two"
             class="mb-2">
@@ -105,7 +105,7 @@ import IMdiLogout from 'virtual:icons/mdi/logout';
 import IMdiPlay from 'virtual:icons/mdi/play';
 import IMdiStop from 'virtual:icons/mdi/stop';
 import { useI18n } from 'vue-i18n';
-import { useRoute } from 'vue-router/auto';
+import { useRoute } from 'vue-router';
 import { useTheme } from 'vuetify';
 import { remote } from '@/plugins/remote';
 import { useDateFns } from '@/composables/use-datefns';

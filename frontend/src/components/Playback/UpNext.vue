@@ -16,7 +16,7 @@
             <span>
               {{ $t('nextItemPlayingIn') }}
               <span class="text-primary darken-2">
-                {{ $tc('seconds', currentItemTimeLeft) }}
+                {{ $t('seconds', currentItemTimeLeft) }}
               </span>
             </span>
           </VCardTitle>
@@ -43,7 +43,7 @@
               <span class="pl-4">
                 {{
                   $t('endsAt', {
-                    time: getEndsAtTime(playbackManager.nextItem.RunTimeTicks).value
+                    time: getEndsAtTime(playbackManager.nextItem.RunTimeTicks)
                   })
                 }}
               </span>

@@ -13,7 +13,6 @@ import {
   VueUseDirectiveResolver
 } from 'unplugin-vue-components/resolvers';
 import Components from 'unplugin-vue-components/vite';
-import RadixVueResolver from 'radix-vue/resolver';
 import UnoCSS from 'unocss/vite';
 import VueRouter from 'unplugin-vue-router/vite';
 import { defineConfig, type UserConfig } from 'vite';
@@ -54,10 +53,7 @@ export default defineConfig(({ mode }): UserConfig => {
           IconsResolver(),
           VueUseComponentsResolver(),
           Vuetify3Resolver(),
-          VueUseDirectiveResolver(),
-          RadixVueResolver({
-            prefix: 'R'
-          })
+          VueUseDirectiveResolver()
         ]
       }),
       /**
@@ -95,6 +91,11 @@ export default defineConfig(({ mode }): UserConfig => {
           main: entrypoints.main,
           index: entrypoints.index
         },
+        ...(mode === 'analyze'
+          ? {
+              onwarn: (warning) => { console.warn(warning); }
+            }
+          : {}),
         output: {
           chunkFileNames: (chunkInfo) => {
             /**

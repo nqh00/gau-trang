@@ -4,6 +4,7 @@
 import {
   BaseItemKind,
   ItemFields,
+  ItemSortBy,
   type BaseItemDto,
   type BaseItemPerson,
   type MediaStream
@@ -70,7 +71,7 @@ export enum CardShapes {
  * This sortOrder is commonly used across many requests. Define it here so it can be
  * used in multiple places without repeating the same code.
  */
-export const defaultSortOrder = ['PremiereDate', 'ProductionYear', 'SortName'];
+export const defaultSortOrder = [ItemSortBy.PremiereDate, ItemSortBy.ProductionYear, ItemSortBy.SortName];
 
 /**
  * Determines if the item is a person
@@ -217,7 +218,7 @@ export function canIdentify(item: BaseItemDto): boolean {
     'Trailer'
   ];
 
-  return valid.includes(item.Type || '');
+  return valid.includes(item.Type ?? '');
 }
 
 /**
@@ -595,29 +596,28 @@ interface IndexPageQueries {
  */
 export async function fetchIndexPage(): Promise<IndexPageQueries> {
   const latestPerLibrary = new Map<BaseItemDto['Id'], ComputedRef<BaseItemDto[]>>();
+  const latestPromises: Promise<void>[] = [];
+  const { data: views } = await useBaseItem(getUserViewsApi, 'getUserViews')();
 
-  const { data: views } = await useBaseItem(getUserViewsApi, 'getUserViews')(() => ({}));
-
-  const latestFromLibrary = async (): Promise<void> => {
-    for (const view of views.value) {
+  for (const view of views.value) {
+    latestPromises.push((async () => {
       const { data } = await useBaseItem(getUserLibraryApi, 'getLatestMedia')(() => ({
         parentId: view.Id
       }));
 
       latestPerLibrary.set(view.Id, data);
-    }
-  };
+    })());
+  }
 
-  const promises = [
+  const itemPromises = [
     useBaseItem(getItemsApi, 'getResumeItems')(() => ({
       mediaTypes: ['Video']
     })),
-    useBaseItem(getUserLibraryApi, 'getLatestMedia')(() => ({})),
-    useBaseItem(getTvShowsApi, 'getNextUp')(() => ({})),
-    latestFromLibrary()
+    useBaseItem(getUserLibraryApi, 'getLatestMedia')(),
+    useBaseItem(getTvShowsApi, 'getNextUp')()
   ];
 
-  const results = (await Promise.all(promises)).filter((r): r is Exclude<typeof r, void> => r !== undefined);
+  const results = (await Promise.all([Promise.all(itemPromises), Promise.all(latestPromises)]))[0];
 
   return {
     views,

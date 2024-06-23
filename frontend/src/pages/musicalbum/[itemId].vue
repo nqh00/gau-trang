@@ -56,7 +56,7 @@
             cols="12"
             md="10">
             <VRow
-              v-if="item && item.GenreItems && item.GenreItems.length > 0"
+              v-if="item && item.GenreItems && item.GenreItems.length"
               align="center">
               <VCol
                 :cols="12"
@@ -106,7 +106,7 @@
 import { ImageType } from '@jellyfin/sdk/lib/generated-client';
 import { getLibraryApi } from '@jellyfin/sdk/lib/utils/api/library-api';
 import { getUserLibraryApi } from '@jellyfin/sdk/lib/utils/api/user-library-api';
-import { useRoute } from 'vue-router/auto';
+import { useRoute } from 'vue-router';
 import { getItemDetailsLink } from '@/utils/items';
 import { getBlurhash } from '@/utils/images';
 import { useBaseItem } from '@/composables/apis';

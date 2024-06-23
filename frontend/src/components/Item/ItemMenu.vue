@@ -1,6 +1,6 @@
 <template>
   <VBtn
-    v-if="options.length > 0"
+    v-if="options.length"
     :variant="outlined ? 'outlined' : undefined"
     icon
     size="small"
@@ -20,7 +20,7 @@
       <VList nav>
         <template v-for="(section, index1) in options">
           <VDivider
-            v-if="section.length > 0 && index1 > 0"
+            v-if="section.length && index1 > 0"
             :key="`item-${item.Id}-section-${index1}-divider`" />
           <VListItem
             v-for="(menuOption, index2) in section"
@@ -73,7 +73,7 @@ import IMdiReplay from 'virtual:icons/mdi/replay';
 import IMdiShuffle from 'virtual:icons/mdi/shuffle';
 import { computed, getCurrentInstance, onMounted, shallowRef, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { useRoute, useRouter } from 'vue-router/auto';
+import { useRoute, useRouter } from 'vue-router';
 import { isStr } from '@/utils/validation';
 import {
   canIdentify,

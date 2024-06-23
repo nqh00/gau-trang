@@ -174,7 +174,7 @@ import { getLibraryApi } from '@jellyfin/sdk/lib/utils/api/library-api';
 import { getUserLibraryApi } from '@jellyfin/sdk/lib/utils/api/user-library-api';
 import { format } from 'date-fns';
 import { computed, ref } from 'vue';
-import { useRoute } from 'vue-router/auto';
+import { useRoute } from 'vue-router';
 import { defaultSortOrder as sortBy } from '@/utils/items';
 import { getBlurhash } from '@/utils/images';
 import { useDateFns } from '@/composables/use-datefns';
@@ -242,13 +242,13 @@ route.meta.layout.backdrop.blurhash = getBlurhash(item.value, ImageType.Backdrop
 /**
  * Pick the most relevant tab to display at mount
  */
-if (movies.value.length > 0) {
+if (movies.value.length) {
   activeTab.value = 0;
-} else if (series.value.length > 0) {
+} else if (series.value.length) {
   activeTab.value = 1;
-} else if (books.value.length > 0) {
+} else if (books.value.length) {
   activeTab.value = 2;
-} else if (photos.value.length > 0) {
+} else if (photos.value.length) {
   activeTab.value = 3;
 } else {
   activeTab.value = 4;
