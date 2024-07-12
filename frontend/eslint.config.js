@@ -218,17 +218,18 @@ export default tseslint.config(
     name: 'Custom config for TypeScript and Vue SFC settings',
     files: vueAndTsFiles,
     rules: {
-      '@typescript-eslint/consistent-type-exports': 'error',
       '@typescript-eslint/no-redundant-type-constituents': 'off',
       '@typescript-eslint/restrict-template-expressions': 'off',
+      '@typescript-eslint/no-non-null-assertion': 'off',
       '@typescript-eslint/no-import-type-side-effects': 'error',
+      '@typescript-eslint/consistent-type-exports': 'error',
+      '@typescript-eslint/explicit-member-accessibility': 'error',
       '@typescript-eslint/consistent-type-imports': ['error', {
         prefer: 'type-imports',
         fixStyle: 'inline-type-imports'
       }],
-      '@typescript-eslint/explicit-member-accessibility': 'error',
+      '@typescript-eslint/no-confusing-void-expression': ['error', { ignoreArrowShorthand: true }],
       '@typescript-eslint/no-empty-interface': ['error', { allowSingleExtends: true }],
-      '@typescript-eslint/no-non-null-assertion': 'off'
     }
   },
   {
@@ -311,10 +312,10 @@ export default tseslint.config(
       'import/no-nodejs-modules': 'off'
     }
   },
-  /** Settings for WebWorkers (the pattern matches any file that includes the word 'worker', regardless it's capitalization) */
+  /** Settings for WebWorkers (the pattern matches any file that ends in .worker.ts) */
   {
     name: 'Environment config for WebWorker files',
-    files: ['**/*[Ww][Oo][Rr][Kk][Ee][Rr]*.ts'],
+    files: ['**/*.worker.ts'],
     languageOptions: {
       globals: {
         ...globals.worker

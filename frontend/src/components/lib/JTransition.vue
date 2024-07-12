@@ -3,7 +3,7 @@
     :is="props.group ? TransitionGroup : Transition"
     class="j-transition"
     v-bind="mergeProps($props, $attrs)"
-    :name="prefersNoMotion || disabled || (isSlow && !important) ? undefined : `j-transition-${props.name}`">
+    :name="prefersNoMotion || disabled || isSlow ? undefined : `j-transition-${props.name}`">
     <slot />
   </component>
 </template>
